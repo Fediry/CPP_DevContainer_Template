@@ -24,8 +24,9 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 # Install all the things we'll need
-#    I am installing git on the container rather than the host, because we are using the volume rather than mounting a directory we share with the host
-#    in my opinion, doing the latter invites all kinds of problems.
+#    I am installing git on the container rather than the host, because we are using the volume
+#    rather than mounting a directory we share with the host in my opinion, doing the latter 
+#    invites all kinds of problems. I am also removing the apt cache to make the image smaller.
 RUN apt update && apt -y --no-install-recommends install \
     sudo \
     bash \
@@ -35,14 +36,9 @@ RUN apt update && apt -y --no-install-recommends install \
     build-essential \
     clang \
     cmake \
-    ninja-build \
     gdb \
     wget \
-    python3 \
-    python3-pip
-
-# Package manager for C++ is what everyone needs in thier life
-RUN pip install conan
+	&& rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user and give them sudo
 RUN groupadd --gid $USER_GID $USERNAME && \
