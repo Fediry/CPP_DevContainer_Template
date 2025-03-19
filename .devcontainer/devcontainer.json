@@ -7,14 +7,14 @@
             "extensions": [
                 "ms-vscode.cpptools",
                 "ms-vscode.cpptools-extension-pack"
-            ]
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash",
+            }
         }
     },
-	"containerEnv": {
-		"GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
-		"GITHUB_USER": "${localEnv:GITHUB_USER}"
-	},
-	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash",
-	}
+    "containerEnv": {
+        "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+        "GITHUB_USER": "${localEnv:GITHUB_USER}"
+    }
 }
